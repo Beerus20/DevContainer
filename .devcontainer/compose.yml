@@ -1,0 +1,23 @@
+services:
+  # Update this to the name of the service you want to work with in your docker-compose.yml file
+  system:
+    build:
+      context: ./system/
+      dockerfile: Dockerfile
+      args:
+        USER: ${USER}
+        USER_UID: ${UID}
+        USER_GID: ${GID}
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+    volumes:
+      - "${PROJECT_PATH}:/home/${USER}/workspace"
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/snd:/dev/snd
+    group_add:
+      - audio
+      - video
+    command: sleep infinity
+ 
