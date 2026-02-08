@@ -18,7 +18,4 @@ RUN apt-get update && apt-get install -y \
 
 RUN useradd -ms /bin/zsh $USER
 RUN mkdir -p /home/$USER/workspace
-RUN mkdir -p /tmp/project
-RUN chown -R $USER:$USER /home/$USER
-
 WORKDIR /home/$USER/workspace
