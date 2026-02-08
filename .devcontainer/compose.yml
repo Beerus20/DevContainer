@@ -6,12 +6,12 @@ services:
       dockerfile: Dockerfile
       args:
         USER: ${USER}
-        USER_UID: ${UID}
-        USER_GID: ${GID}
     environment:
+      - USER=${USER}
+      - PROJECT_REPO=${PROJECT_REPO}
       - DISPLAY=${DISPLAY:-:0}
     volumes:
-      - "${PROJECT_PATH}:/home/${USER}/workspace"
+      #- "${PROJECT_PATH}:/home/${USER}/workspace"
       - "/tmp/.X11-unix:/tmp/.X11-unix"
     devices:
       - /dev/dri:/dev/dri

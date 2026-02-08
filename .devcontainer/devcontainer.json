@@ -3,5 +3,5 @@
 	"dockerComposeFile": "compose.yml",
 	"service": "system",
 	"workspaceFolder": "/home/${localEnv:USER}/workspace",
-	"remoteUser": "${localEnv:USER}"
+	"postStartCommand": "/tmp/entrypoint.sh"
 }

@@ -1,10 +1,10 @@
 FROM debian:12
 
 ARG USER=dev
-ARG USER_UID=1000
-ARG USER_GID=1000
 
 COPY ./packages.txt /tmp/packages.txt
+COPY ./entrypoint.sh /tmp/entrypoint.sh
+RUN chmod +x /tmp/entrypoint.sh
 
 RUN apt-get update && apt-get install -y \
     bash \
@@ -12,11 +12,13 @@ RUN apt-get update && apt-get install -y \
     git \
     ca-certificates \
     zsh \
+    coreutils \
     $(cat /tmp/packages.txt | xargs) \
     && rm -rf /var/lib/apt/lists/*
 
-RUN groupadd -g $USER_GID $USER
-RUN useradd -ms /bin/zsh -u $USER_UID -g $USER_GID $USER
-#RUN chown -R $USER_UID:$USER_GID /home/$USER
+RUN useradd -ms /bin/zsh $USER
 RUN mkdir -p /home/$USER/workspace
+RUN mkdir -p /tmp/project
+RUN chown -R $USER:$USER /home/$USER
+
 WORKDIR /home/$USER/workspace
