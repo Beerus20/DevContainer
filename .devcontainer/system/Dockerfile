@@ -1,9 +1,9 @@
 FROM debian:12
 
-ARG USER=dev
+ARG PROJECT_PATH=/workspace
 
-COPY ./packages.txt /tmp/packages.txt
-COPY ./entrypoint.sh /tmp/entrypoint.sh
+COPY ./tools/* /tmp/
+
 RUN chmod +x /tmp/entrypoint.sh
 
 RUN apt-get update && apt-get install -y \
@@ -16,6 +16,6 @@ RUN apt-get update && apt-get install -y \
     $(cat /tmp/packages.txt | xargs) \
     && rm -rf /var/lib/apt/lists/*
 
-RUN useradd -ms /bin/zsh $USER
-RUN mkdir -p /home/$USER/workspace
-WORKDIR /home/$USER/workspace
+RUN chsh -s $(which zsh) root
+RUN mkdir -p ${PROJECT_PATH}
+WORKDIR ${PROJECT_PATH}

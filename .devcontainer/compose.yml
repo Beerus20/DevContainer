@@ -5,13 +5,13 @@ services:
       context: ./system/
       dockerfile: Dockerfile
       args:
-        USER: ${USER}
+        PROJECT_PATH: ${PROJECT_PATH}
     environment:
       - USER=${USER}
       - PROJECT_REPO=${PROJECT_REPO}
       - DISPLAY=${DISPLAY:-:0}
+      - PROJECT_PATH=${PROJECT_PATH}
     volumes:
-      #- "${PROJECT_PATH}:/home/${USER}/workspace"
       - "/tmp/.X11-unix:/tmp/.X11-unix"
     devices:
       - /dev/dri:/dev/dri
@@ -19,5 +19,6 @@ services:
     group_add:
       - audio
       - video
+    network_mode: host
     command: sleep infinity
  
