@@ -13,7 +13,7 @@ if [ ! -f /tmp/.initialized ]; then
 	nvm install 24
 	node -v
 	npm -v
-	wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.zshrc" SHELL="$(which zsh)" zsh -
+	wget -qO- https://get.pnpm.io/install.sh | ENV="/root/.zshrc" SHELL="$(which zsh)" zsh -
 	source /root/.zshrc
 
 	# Cloner seulement si le dossier est vide
