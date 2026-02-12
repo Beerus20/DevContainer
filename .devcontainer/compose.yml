@@ -5,12 +5,12 @@ services:
       context: ./system/
       dockerfile: Dockerfile
       args:
-        PROJECT_PATH: ${PROJECT_PATH}
+        PROJECT_PATH: ${WORKDIR}
+    container_name: dev-system
     environment:
-      - USER=${USER}
       - PROJECT_REPO=${PROJECT_REPO}
+      - WORKDIR=${WORKDIR}
       - DISPLAY=${DISPLAY:-:0}
-      - PROJECT_PATH=${PROJECT_PATH}
     volumes:
       - "/tmp/.X11-unix:/tmp/.X11-unix"
     devices:

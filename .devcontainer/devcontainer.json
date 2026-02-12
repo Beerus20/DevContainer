@@ -2,6 +2,6 @@
 	"name": "Dev Container",
 	"dockerComposeFile": "compose.yml",
 	"service": "system",
-	"workspaceFolder": "/home/workspace",
+	"workspaceFolder": "/workspace",
 	"postStartCommand": "/tmp/entrypoint.sh"
 }
