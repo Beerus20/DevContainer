@@ -92,11 +92,70 @@ Le container utilise `network_mode: host`, ce qui signifie qu'il partage la stac
 
 #### Ajouter des packages
 
-Ajoutez vos packages dans [.devcontainer/system/tools/packages.txt](.devcontainer/system/tools/packages.txt), un package par ligne.
+Le fichier [.devcontainer/system/tools/packages.txt](.devcontainer/system/tools/packages.txt) contient la liste des packages Debian à installer automatiquement lors de la construction du container.
+
+**Format :** Un package par ligne (sans virgules ni espaces supplémentaires)
+
+**Packages actuellement installés :**
+```
+libx11-6              # Bibliothèque X11 de base
+libxext6              # Extensions X11
+libxrender1           # Rendu X11
+libxtst6              # Test d'extensions X11
+libxi6                # X11 Input extension
+libxrandr2            # X11 RandR extension
+libxcursor1           # Support curseur X11
+libxdamage1           # X11 Damage extension
+libxfixes3            # X11 Fixes extension
+libxcomposite1        # X11 Composite extension
+libsdl2-dev           # Simple DirectMedia Layer 2
+libsdl2-image-dev     # SDL2 - support d'images
+libsdl2-ttf-dev       # SDL2 - support de polices TrueType
+libsdl2-mixer-dev     # SDL2 - support audio/mixage
+libbsd-dev            # Bibliothèques BSD
+valgrind              # Outil d'analyse mémoire
+git-flow              # Extension Git pour workflow
+gcc                   # Compilateur C GNU
+g++                   # Compilateur C++ GNU
+make                  # Outil de build
+```
+
+**Exemples d'ajouts courants :**
+
+Pour le développement Python :
+```
+python3
+python3-pip
+python3-venv
+```
+
+Pour le développement Node.js :
+```
+nodejs
+npm
+```
+
+Pour des outils supplémentaires :
+```
+vim
+nano
+htop
+tmux
+```
+
+**Note :** Après modification de `packages.txt`, vous devez reconstruire le container :
+1. Commande Palette (`Ctrl+Shift+P`)
+2. "Dev Containers: Rebuild Container"
 
 #### Modifier la configuration Zsh
 
 Éditez [.devcontainer/system/tools/.zshrc](.devcontainer/system/tools/.zshrc) selon vos préférences.
+
+**Personnalisations possibles :**
+- Changer le thème (actuellement `bira`)
+- Ajouter des plugins Oh My Zsh
+- Définir des alias personnalisés
+- Configurer des variables d'environnement
 
 #### Changer le dépôt Git
 
